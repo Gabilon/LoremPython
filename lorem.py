@@ -1,11 +1,15 @@
 import random
 
+#Finds words1.txt and reads ('r')
+#Splits words into items in a list ('words' becomes a list)
 words = open('words1.txt','r')
 words = words.read().split()
 
-
+#Ask user how many parragraphs
 ask_par = raw_input("Enter how many paragraphs: ")
 
+#parses the string value into a int
+#if not possible it will show an error
 try:
 	value  = int(ask_par)
 except:
@@ -30,6 +34,8 @@ if ask_filler == "y" or ask_filler == "Y":
 
 
 def ipsum(ask_Coqui,value,output_str):
+	#Array and Counter 
+	array_paragraphs = []
 	n = 0
 	while n < value:
 		for x in range(0,random.randint(4,14)): #Sentences
@@ -47,9 +53,11 @@ def ipsum(ask_Coqui,value,output_str):
 					output_str += ","
 			output_str = output_str.rstrip(",")
 			output_str += "." + " "
-		output_str += "\n\n"
+		array_paragraphs.append(output_str)
+		output_str = ""
 		n += 1
-	return output_str
+
+	return array_paragraphs
 
 def add_Coqui(output_str):
 	for y in range(0, random.randint(min_sentences, max_sentences)):
@@ -62,6 +70,10 @@ def add_Coqui(output_str):
 	output_str += ". "
 	return output_str
 
-print ipsum(ask_Coqui,value,output_str)
+complete = ipsum(ask_Coqui,value,output_str) #returns array/list
 
+#prints out the list.  
+for x in complete:
+	print x
+	print ""
 
